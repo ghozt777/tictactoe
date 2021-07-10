@@ -44,11 +44,11 @@ function takeCpuInput()
 {
   if(9 -(userCount+cpuCount) > 0)
   {
-    var temp = Math.floor(Math.random() * 9);
+    var temp = Math.floor((Math.random() * 9) + 1);
     var condition = checkForIllegalMoves("cpu",temp);
     while(condition==1)
     {
-        var temp = Math.floor(Math.random() * 10);
+        var temp = Math.floor((Math.random() * 9) + 1);
         var condition = checkForIllegalMoves("cpu",temp);  
     }
     console.log("CPUs Move ---> Position: "+ (temp));
@@ -121,7 +121,7 @@ function checkCondition()
     if(userPos[1]==2&&userPos[4]==5&&userPos[7]==8){console.log(userMessage); return 1;}  // column 2 
     if(userPos[2]==3&&userPos[5]==6&&userPos[8]==9){console.log(userMessage); return 1;}  // column 3
     if(userPos[0]==1&&userPos[4]==5&&userPos[8]==9){console.log(userMessage); return 1;}  // diagonal 1
-    if(userPos[2]==3&&userPos[4]==5&&userPos[6]==7){console.log(userMessage); return 1;} // diagonal 2
+    if(userPos[2]==3&&userPos[4]==5&&userPos[6]==7){console.log(userMessage); return 1;}  // diagonal 2
 }
 var gameCondition = checkCondition();
 while(gameCondition!=1)

@@ -4,8 +4,8 @@ var c2 = ["-","+","-","+","-"];
 var c3 = [" ","|"," ","|"," "];
 var c4 = ["-","+","-","+","-"];
 var c5 = [" ","|"," ","|"," "];
-var userPos = new Array();
-var cpuPos = new Array();
+var userPos = [];
+var cpuPos = [];
 var userCount = 0;
 var cpuCount =0;
 function printGrid()
@@ -29,8 +29,8 @@ function takeUserInput()
             var temp = readlineSync.question("enter the position(1-9): ");
             var condition = checkForIllegalMoves("user",temp);
         }
-        userPos[userCount]=temp;
-        updateBoard("user",userPos[userCount]);
+        userPos[temp-1]=true;
+        updateBoard("user",temp);
         printGrid();
         userCount++;
 
@@ -52,7 +52,7 @@ function takeCpuInput()
         var condition = checkForIllegalMoves("cpu",temp);  
     }
     console.log("CPUs Move ---> Position: "+ (temp));
-    cpuPos[cpuCount]=temp;
+    cpuPos[temp-1]=true;
     cpuCount++;
     updateBoard("cpu",temp);
     printGrid();
@@ -63,7 +63,7 @@ function takeCpuInput()
   }
 }
 
-function updateBoard(player, pos)
+function updateBoard(player,pos)
 {
   if(player === "user")
   {
@@ -89,7 +89,7 @@ function checkForIllegalMoves(player,val)
     {
         for(var i=0;i<=cpuCount;i++)
         {
-            if(val == cpuPos[i])
+            if(cpuPos[val-1]==true||userPos[val-1]==true)
             {
                 return 1;
             }
@@ -100,7 +100,7 @@ function checkForIllegalMoves(player,val)
     {
         for(var i=0;i<=userCount;i++)
         {
-            if(val == userPos[i])
+            if(userPos[val-1]==true||cpuPos[val-1]==true)
             {
                 return 1;
             }
@@ -110,22 +110,39 @@ function checkForIllegalMoves(player,val)
 }
 function checkCondition()
 {
-    // mapping
-    for(var i=0;i<userCount;i++){userPos[userPos[i]-1]=userPos[i];}
     var userMessage = "congrats u won !";
     var cpuMessage = "opps looks like u just lost ! well better luck next time ....";
-    if(userPos[0]==1&&userPos[1]==2&&userPos[2]==3){console.log(userMessage); return 1;}  // row 1
-    if(userPos[3]==4&&userPos[4]==5&&userPos[5]==6){console.log(userMessage); return 1;}  // row 2 
-    if(userPos[6]==7&&userPos[7]==8&&userPos[8]==9){console.log(userMessage); return 1;}  // row 3
-    if(userPos[0]==1&&userPos[3]==4&&userPos[6]==7){console.log(userMessage); return 1;}  // column 1
-    if(userPos[1]==2&&userPos[4]==5&&userPos[7]==8){console.log(userMessage); return 1;}  // column 2 
-    if(userPos[2]==3&&userPos[5]==6&&userPos[8]==9){console.log(userMessage); return 1;}  // column 3
-    if(userPos[0]==1&&userPos[4]==5&&userPos[8]==9){console.log(userMessage); return 1;}  // diagonal 1
-    if(userPos[2]==3&&userPos[4]==5&&userPos[6]==7){console.log(userMessage); return 1;}  // diagonal 2
+
+    // USER WINNING CONDITIONS
+
+    if(userPos[0]==true&&userPos[1]==true&&userPos[2]==true){console.log(userMessage); return 1;}  // row 1
+    if(userPos[3]==true&&userPos[4]==true&&userPos[5]==true){console.log(userMessage); return 1;}  // row 2 
+    if(userPos[6]==true&&userPos[7]==true&&userPos[8]==true){console.log(userMessage); return 1;}  // row 3
+    if(userPos[0]==true&&userPos[3]==true&&userPos[6]==true){console.log(userMessage); return 1;}  // column 1
+    if(userPos[1]==true&&userPos[4]==true&&userPos[7]==true){console.log(userMessage); return 1;}  // column 2 
+    if(userPos[2]==true&&userPos[5]==true&&userPos[8]==true){console.log(userMessage); return 1;}  // column 3
+    if(userPos[0]==true&&userPos[4]==true&&userPos[8]==true){console.log(userMessage); return 1;}  // diagonal 1
+    if(userPos[2]==true&&userPos[4]==true&&userPos[6]==true){console.log(userMessage); return 1;}  // diagonal 2
+
+    // CPU WINNING CONDITIONS
+
+    if(cpuPos[0]==true&&cpuPos[1]==true&&cpuPos[2]==true){console.log(cpuMessage); return 1;}  // row 1
+    if(cpuPos[3]==true&&cpuPos[4]==true&&cpuPos[5]==true){console.log(cpuMessage); return 1;}  // row 2 
+    if(cpuPos[6]==true&&cpuPos[7]==true&&cpuPos[8]==true){console.log(cpuMessage); return 1;}  // row 3
+    if(cpuPos[0]==true&&cpuPos[3]==true&&cpuPos[6]==true){console.log(cpuMessage); return 1;}  // column 1
+    if(cpuPos[1]==true&&cpuPos[4]==true&&cpuPos[7]==true){console.log(cpuMessage); return 1;}  // column 2 
+    if(cpuPos[2]==true&&cpuPos[5]==true&&cpuPos[8]==true){console.log(cpuMessage); return 1;}  // column 3
+    if(cpuPos[0]==true&&cpuPos[4]==true&&cpuPos[8]==true){console.log(cpuMessage); return 1;}  // diagonal 1
+    if(cpuPos[2]==true&&cpuPos[4]==true&&cpuPos[6]==true){console.log(cpuMessage); return 1;}  // diagonal 2
 }
 var gameCondition = checkCondition();
 while(gameCondition!=1)
 {
+    if(userCount+cpuCount==9)
+    {
+        console.log("Its a draw");
+        break;
+    }
     takeUserInput();
     takeCpuInput();
     var gameCondition = checkCondition();

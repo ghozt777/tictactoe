@@ -67,23 +67,23 @@ function takeCpuInput()
 
 function updateBoard(player,pos)
 {
-  if(player === "user")
+  if(player === chalk.green("user"))
   {
-    symbol = "O"
+    let symbol = ("O");
   }
   if(player === "cpu")
   {
-    symbol = "X"
+    let symbol = "X";
   }
-  if(pos == 1){c1[0]=symbol}
-  if(pos == 2){c1[2]=symbol}
-  if(pos == 3){c1[4]=symbol}
-  if(pos == 4){c3[0]=symbol}
-  if(pos == 5){c3[2]=symbol}
-  if(pos == 6){c3[4]=symbol}
-  if(pos == 7){c5[0]=symbol}
-  if(pos == 8){c5[2]=symbol}
-  if(pos == 9){c5[4]=symbol}
+  if(pos == 1){c1[0]=symbol;}
+  if(pos == 2){c1[2]=symbol;}
+  if(pos == 3){c1[4]=symbol;}
+  if(pos == 4){c3[0]=symbol;}
+  if(pos == 5){c3[2]=symbol;}
+  if(pos == 6){c3[4]=symbol;}
+  if(pos == 7){c5[0]=symbol;}
+  if(pos == 8){c5[2]=symbol;}
+  if(pos == 9){c5[4]=symbol;}
 }
 function checkForIllegalMoves(player,val)
 {

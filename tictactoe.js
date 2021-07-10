@@ -68,6 +68,7 @@ function updateBoard(player,pos)
   if(player === chalk.green("user"))
   {
 <<<<<<< HEAD
+<<<<<<< HEAD
     let symbol = ("O");
   }
   if(player === "cpu")
@@ -81,6 +82,14 @@ function updateBoard(player,pos)
     symbol = "X";
 >>>>>>> parent of 3c4e61c (Update tictactoe.js)
   }
+=======
+    symbol = "O";
+  }
+  if(player === "cpu")
+  {
+    symbol = "X";
+  }
+>>>>>>> parent of 3c4e61c (Update tictactoe.js)
   if(pos == 1){c1[0]=symbol;}
   if(pos == 2){c1[2]=symbol;}
   if(pos == 3){c1[4]=symbol;}

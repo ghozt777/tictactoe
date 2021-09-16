@@ -116,8 +116,10 @@ function checkCondition()
     if(cpuPos[2]==true&&cpuPos[5]==true&&cpuPos[8]==true){print(cpuMessage); return 1}  // column 3
     if(cpuPos[0]==true&&cpuPos[4]==true&&cpuPos[8]==true){print(cpuMessage); return 1}  // diagonal 1
     if(cpuPos[2]==true&&cpuPos[4]==true&&cpuPos[6]==true){print(cpuMessage); return 1}  // diagonal 2
+    
+    return 0
 }
-var gameCondition = checkCondition()
+var gameCondition = 0
 print(chalk.bold.blue("u ready ! lets go ---->"))
 print(chalk.bold.blue("user symbol --->  O "))
 print(chalk.bold.red("cpu symbol ---> X"))
@@ -130,7 +132,7 @@ while(1)
         print(chalk.yellow("Its a draw"))
         break
     }
-    if(gameCondition ==1 )
+    if(gameCondition == 1 )
     {
       break
     }

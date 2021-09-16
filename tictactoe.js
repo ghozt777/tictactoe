@@ -87,28 +87,8 @@ function updateBoard(player,pos)
 }
 function checkForIllegalMoves(player,val)
 {
-    if(player === "user")
-    {
-        for(var i=0;i<=cpuCount;i++)
-        {
-            if(cpuPos[val-1]==true||userPos[val-1]==true)
-            {
-                return 1
-            }
-        }
-        return 0
-    }
-    if(player === "cpu")
-    {
-        for(var i=0;i<=userCount;i++)
-        {
-            if(userPos[val-1]==true||cpuPos[val-1]==true)
-            {
-                return 1
-            }
-        }
-        return 0
-    }
+   if(cpuPos[val-1]==true||userPos[val-1]==true) return 1;
+   return 0;
 }
 function checkCondition()
 {
